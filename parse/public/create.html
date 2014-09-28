@@ -19,6 +19,12 @@
 <body>  
 <div id='msg' class'message'></div>
   <div id="main">
+
+  <div class='title'>
+    <h1>
+      Spot Fix Creation
+    </h1>
+  </div>
   <div class='drow' >
     <span class='labSpan'>
       
@@ -46,7 +52,8 @@
       Photo : 
     </span>
     <span class='valSpan'>
-      <input type="file" accept="image/*" capture="camera" id='dPhoto' />      
+      <input type="file" accept="image/*" capture="camera" id='dPhoto'  />    
+          <img id="blah" src="#" alt="upload picture" />
     </span>
   </div>
   <div class='drow' >
@@ -66,7 +73,7 @@
       Address : 
     </span>
     <span class='valSpan'>
-      <textarea id = 'dAddress'> Location of the Spot Fix :  </textarea>
+      <textarea id = 'dAddress'> Location of the Spot Fix...  </textarea>
       <button id='addressBtn'>Get My location( using HTML5 location and modifying using google api)</button>
       <div class='hidden'>
         // google api screen with the location found, which can be edited as per need( like moving from the detected area to the right one etx.).
@@ -96,6 +103,16 @@
   </div>
 
 
+  <div class='drow' >
+    <span class='labSpan'>
+      <button id='create'> Create Spot Fix</button>
+    </span>
+    <span class='valSpan'>
+      <button id='back'> Nope, changed my mind.</button>
+    </span>
+  </div>
+
+
 <!--
   <video id='video2' autoplay='true' width=280 height=210></video>
   <button id='capture'>Capture Photo</button>
@@ -112,12 +129,6 @@
     </span>
   </div>
 
--->
-
-  </div>
-
-
-
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -132,6 +143,12 @@
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> 
+-->
+
+  </div>
+
+
+
 </body>
 
 </html>
