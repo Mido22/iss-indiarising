@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "IndiaRising": {
+            "applicationId": "fTrYXzUcG7ERobkJJmGIMozQLxjBrBmgKS4HuQhM", 
+            "masterKey": "5NM7N9jSgVtrFMpq1q6fJ2HiSeYthk3GVqf8lUYd"
+        }, 
+        "_default": {
+            "link": "IndiaRising"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.0"
+    }
+}
