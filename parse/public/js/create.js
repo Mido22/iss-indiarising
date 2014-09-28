@@ -47,7 +47,7 @@ function saveEvent(){
 	sf.set("address", $('#dAddress').val());
 	sf.set("description", $('#dDesc').val());
 	sf.set("hours_required", $('#dManpower').val());
-	placeObject.set("location", new Parse.GeoPoint(dLoc));
+	sf.set("location", new Parse.GeoPoint(dLoc));
 	//sf.set("", $('#').value());
 	//sf.set("", $('#').value());
 	var fileUploadControl = $("#dPhoto")[0];	/**/
