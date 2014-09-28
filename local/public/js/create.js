@@ -15,17 +15,18 @@ $(document).ready(function(){
     });
  $('#dPhoto').change(readURL);
  $('#create').click(saveEvent);
-
+$('#addressBtn').click(getLocation);
 });
 
+var dLoc;
 
 function showMessage(msg,type) {  // type can be success or error, based on that we can set class.
     $('#msg').text(msg);
 }
 
 function readURL() {
- 	var input = $('#dPhoto')[0];
- 	if (input.files && input.files[0]) {
+  var input = $('#dPhoto')[0];
+  if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#blah').attr('src', e.target.result).width(200);//.height(100);
@@ -34,50 +35,82 @@ function readURL() {
     }
 }
 
-
 function saveEvent(){
-	console.log('in save event');	
-	// Simple syntax to create a new subclass of Parse.Object.
-	var SpotFix = Parse.Object.extend("event");
- 	console.log('fdg = '+$('#dName').val());
-	// Create a new instance of that class.
-	var sf = new SpotFix();
-	sf.set("title", $('#dName').val());
-	sf.set("createdAt", $('#dDate').val());
-	sf.set("address", $('#dAddress').val());
-	sf.set("description", $('#dDesc').val());
-	sf.set("hours_required", $('#dManpower').val());
-	//sf.set("", $('#').value());
-	//sf.set("", $('#').value());
-	var fileUploadControl = $("#dPhoto")[0];	/**/
-	if (fileUploadControl.files.length > 0) {
-	  var file = fileUploadControl.files[0];
-	  var name = fileUploadControl.value;
-	  var parseFile = new Parse.File(name, file);	
-	  parseFile.save().then(function() {
-  		// The file has been saved to Parse.
-  		console.log('photo saved to server.');
-		sf.set("before", parseFile);
-		sf.save(null, {
-			success: function(newObj) {
-    		// Execute any logic that should take place after the object is saved.
-    		alert('New object created with objectId: ' + newObj.id);
-  			},
-  			error: function(newObj, error) {
-    			// Execute any logic that should take place if the save fails.
-    			// error is a Parse.Error with an error code and message.
-    			alert('Failed to create new object, with error code: ' + error.message);
-  			}
-	});
+  console.log('in save event'); 
+  // Simple syntax to create a new subclass of Parse.Object.
+  var SpotFix = Parse.Object.extend("event");
+  console.log('fdg = '+$('#dName').val());
+  // Create a new instance of that class.
+  var sf = new SpotFix();
+  sf.set("title", $('#dName').val());
+  sf.set("createdAt", $('#dDate').val());
+  sf.set("address", $('#dAddress').val());
+  sf.set("description", $('#dDesc').val());
+  sf.set("hours_required", $('#dManpower').val());
+  //sf.set("", $('#').value());
+  //sf.set("", $('#').value());
+  var fileUploadControl = $("#dPhoto")[0];  /**/
+  if (fileUploadControl.files.length > 0) {
+    var file = fileUploadControl.files[0];
+    var name = fileUploadControl.value;
+    var parseFile = new Parse.File(name, file); 
+    parseFile.save().then(function() {
+      // The file has been saved to Parse.
+      console.log('photo saved to server.');
+    sf.set("before", parseFile);
+    sf.save(null, {
+      success: function(newObj) {
+        // Execute any logic that should take place after the object is saved.
+        alert('New object created with objectId: ' + newObj.id);
+        },
+        error: function(newObj, error) {
+          // Execute any logic that should take place if the save fails.
+          // error is a Parse.Error with an error code and message.
+          alert('Failed to create new object, with error code: ' + error.message);
+        }
+  });
 
-		//for retrival
-		//var profilePhoto = profile.get("photoFile");
-		//$("profileImg")[0].src = profilePhoto.url();
-		}, function(error) {
-  			// The file either could not be read, or could not be saved to Parse.
-  			console.log('Photo not saved to server.');
-	 });
+    //for retrival
+    //var profilePhoto = profile.get("photoFile");
+    //$("profileImg")[0].src = profilePhoto.url();
+    }, function(error) {
+        // The file either could not be read, or could not be saved to Parse.
+        console.log('Photo not saved to server.');
+   });
 
 
-	}
+  }
+}
+
+function getLocation(){
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      $('#gMap').removeClass('hidden');
+      var mapCanvas = document.getElementById('map_canvas');
+      dLoc={
+        latitude:position.coords.latitude,
+        longitude:position.coords.longitude
+      };
+        //var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        console.log('asda lat ='+dLoc.latitude+', log = '+dLoc.longitude);
+        var mapOptions = {
+            center: new google.maps.LatLng(dLoc.latitude, dLoc.longitude),
+            zoom: 18,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var myLatlng = new google.maps.LatLng(dLoc.latitude,dLoc.longitude);
+        var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: 'Location of Fix'
+            });
+      
+    },  showMessage('Error: The Geolocation service failed.','error'));
+  } else {
+    showMessage('Error: Your browser doesn\'t support geolocation.', 'error');
+  }
+
+
 }

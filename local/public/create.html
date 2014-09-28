@@ -14,6 +14,7 @@
   <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
   <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
    <script type="text/javascript" src="js/create.js" >    </script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
 
 <body>  
@@ -74,10 +75,11 @@
     </span>
     <span class='valSpan'>
       <textarea id = 'dAddress'> Location of the Spot Fix...  </textarea>
-      <button id='addressBtn'>Get My location( using HTML5 location and modifying using google api)</button>
-      <div class='hidden'>
-        // google api screen with the location found, which can be edited as per need( like moving from the detected area to the right one etx.).
+      <button id='addressBtn'>Get My location</button>
+      <div id ='gMap' class='hidden'>
+       <!--google api screen with the location found, which can be edited as per need( like moving from the detected area to the right one etx.).-->
 
+        <div id="map_canvas"></div>
       </div>
     </span>
   </div>

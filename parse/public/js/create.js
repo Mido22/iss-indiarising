@@ -15,9 +15,10 @@ $(document).ready(function(){
     });
  $('#dPhoto').change(readURL);
  $('#create').click(saveEvent);
-
+$('#addressBtn').click(getLocation);
 });
 
+var dLoc;
 
 function showMessage(msg,type) {  // type can be success or error, based on that we can set class.
     $('#msg').text(msg);
@@ -34,7 +35,6 @@ function readURL() {
     }
 }
 
-
 function saveEvent(){
 	console.log('in save event');	
 	// Simple syntax to create a new subclass of Parse.Object.
@@ -47,6 +47,7 @@ function saveEvent(){
 	sf.set("address", $('#dAddress').val());
 	sf.set("description", $('#dDesc').val());
 	sf.set("hours_required", $('#dManpower').val());
+	placeObject.set("location", new Parse.GeoPoint(dLoc));
 	//sf.set("", $('#').value());
 	//sf.set("", $('#').value());
 	var fileUploadControl = $("#dPhoto")[0];	/**/
@@ -80,4 +81,37 @@ function saveEvent(){
 
 
 	}
+}
+
+function getLocation(){
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    	$('#gMap').removeClass('hidden');
+      var mapCanvas = document.getElementById('map_canvas');
+    	dLoc={
+    		latitude:position.coords.latitude,
+    		longitude:position.coords.longitude
+    	};
+      	//var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      	console.log('asda lat ='+dLoc.latitude+', log = '+dLoc.longitude);
+      	var mapOptions = {
+          	center: new google.maps.LatLng(dLoc.latitude, dLoc.longitude),
+          	zoom: 18,
+          	mapTypeId: google.maps.MapTypeId.ROADMAP
+      	}
+      	var map = new google.maps.Map(mapCanvas, mapOptions);
+      	var myLatlng = new google.maps.LatLng(dLoc.latitude,dLoc.longitude);
+      	var marker = new google.maps.Marker({
+        			position: myLatlng,
+        			map: map,
+        			title: 'Location of the Spot Fix'
+  	  			});
+      
+    },  showMessage('Error: The Geolocation service failed.','error'));
+  } else {
+    showMessage('Error: Your browser doesn\'t support geolocation.', 'error');
+  }
+
+
 }
