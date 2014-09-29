@@ -18,7 +18,7 @@ $(document).ready(function(){
 $('#addressBtn').click(getLocation);
 });
 
-var dLoc;
+var dLoc,mapCanvas;
 
 function showMessage(msg,type) {  // type can be success or error, based on that we can set class.
     $('#msg').text(msg);
@@ -84,7 +84,21 @@ function saveEvent(){
 }
 
 function getLocation(){
+  if (navigator.geolocation) {
+        var optn = {
+            enableHighAccuracy : true,
+            timeout : 10000,
+            maximumAge : 10000
+        };
+	// Get the user's current position
+	navigator.geolocation.watchPosition(showPosition, showError, optn);
+	$('#gMap').removeClass('hidden');
+    mapCanvas = document.getElementById('map_canvas');
+	} else {
+    	alert('Geolocation is not supported in your browser');
+	}
 
+/*
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
     	$('#gMap').removeClass('hidden');
@@ -112,6 +126,45 @@ function getLocation(){
   } else {
     showMessage('Error: Your browser doesn\'t support geolocation.', 'error');
   }
+*/
+
+}
 
 
+
+function showPosition(position) {
+		//document.write('Latitude: '+position.coords.latitude+'Longitude: '+position.coords.longitude);
+    	dLoc={
+    		latitude:position.coords.latitude,
+    		longitude:position.coords.longitude
+    	};
+    	var mapOptions = {
+          	center: new google.maps.LatLng(dLoc.latitude, dLoc.longitude),
+          	zoom: 18,
+          	mapTypeId: google.maps.MapTypeId.ROADMAP
+      	}
+      	var map = new google.maps.Map(mapCanvas, mapOptions);
+      	var myLatlng = new google.maps.LatLng(dLoc.latitude,dLoc.longitude);
+      	var marker = new google.maps.Marker({
+        			position: myLatlng,
+        			map: map,
+        			title: 'Location of the Spot Fix'
+  	  			});
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+    }
 }
