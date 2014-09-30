@@ -28,6 +28,10 @@
 }
 
 @media (max-width:750px) {
+    #main {
+        padding:10px;
+    }
+
     .buttons button {
         width:90%;
     }
