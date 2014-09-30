@@ -46,7 +46,8 @@ function saveEvent(){
 	sf.set("title", $('#dName').val());
 	sf.set("fixDate", $('#dDate').val());
 	sf.set("address", $('#dAddress').val());
-	sf.set("description", $('#dDesc').val());
+  sf.set("description", $('#dDesc').val());
+  sf.set("createrName", 'Batman');
 	sf.set("hours_required", $('#dManpower').val());
 	sf.set("location", new Parse.GeoPoint(dLoc));
 	sf.set("searchKeys", searchKeys);

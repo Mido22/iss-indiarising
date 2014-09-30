@@ -7,7 +7,7 @@ $(document).ready(function(){
 $('#findCloseset').click(getLocation);
 });
 
-var dLoc,mapCanvas;
+var dLoc,mapCanvas,sResults=[];
 
 function showMessage(msg,type) {  // type can be success or error, based on that we can set class.
     $('#msg').text(msg);
@@ -17,12 +17,28 @@ function searchEvent(){
 	console.log('in search event'+$('#dSearch').val());	
 	var SpotFix = Parse.Object.extend("event");
   var query = new Parse.Query(SpotFix);
-  query.select("address",'creater','description','location','status','title','hours_required','fixDate');
+  query.select("address",'creater','description','location','status','title','hours_required','fixDate','createrName');
   query.contains("searchKeys", ($('#dSearch').val()).toLowerCase());
   query.find({
       success: function(results) {
         //alert("Successfully retrieved " + results.length + " events.");
+        $('#searchTable').remove();
+         $( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="searchTable"></table>' ).appendTo($('#sr'));
+        sResults=results;
+        var dataSet=[],row;
         console.log('SON : '+JSON.stringify(results[0]));
+        sResults.forEach(function(d){
+            row=[];
+            row.push(d.title);
+            row.push(d.fixDate);
+            row.push(d.address);
+            row.push(d.description);
+            row.push(d.hours_required);
+            row.push(d.createrName);
+            dataSet.push(row);
+        });
+
+        
         // Do something with the returned Parse.Object values
         //for (var i = 0; i < results.length; i++) {
           //var object = results[i];
