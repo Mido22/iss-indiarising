@@ -18,26 +18,39 @@ function searchEvent(){
 	var SpotFix = Parse.Object.extend("event");
   var query = new Parse.Query(SpotFix);
   query.select("address",'creater','description','location','status','title','hours_required','fixDate','createrName');
+  query.limit(50);
   query.contains("searchKeys", ($('#dSearch').val()).toLowerCase());
   query.find({
       success: function(results) {
         //alert("Successfully retrieved " + results.length + " events.");
-        $('#searchTable').remove();
+        $('#sr').empty();
          $( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="searchTable"></table>' ).appendTo($('#sr'));
         sResults=results;
         var dataSet=[],row;
-        console.log('SON : '+JSON.stringify(results[0]));
         sResults.forEach(function(d){
+            console.log('SON : '+JSON.stringify(d));
             row=[];
-            row.push(d.title);
-            row.push(d.fixDate);
-            row.push(d.address);
-            row.push(d.description);
-            row.push(d.hours_required);
-            row.push(d.createrName);
+            row.push(d.get('title'));
+            row.push(d.get('fixDate'));
+            row.push(d.get('address'));
+            row.push(d.get('description'));
+            row.push(d.get('hours_required'));
+            row.push(d.get('createrName'));
+            console.log('geo : '+d.get('location').latitude );
             dataSet.push(row);
         });
-
+        console.log('ds:'+JSON.stringify(dataSet));
+        $('#searchTable').dataTable( {
+          "data": dataSet,
+          "columns": [
+            { "title": "Title" },
+            { "title": "Fix Date" },
+            { "title": "Address" },
+            { "title": "Description" },
+            { "title": "Resources Required" },
+            { "title": "Chosen By" }
+          ]
+        } ); 
         
         // Do something with the returned Parse.Object values
         //for (var i = 0; i < results.length; i++) {

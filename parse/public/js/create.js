@@ -90,8 +90,8 @@ function getLocation(){
   if (navigator.geolocation) {
         var optn = {
             enableHighAccuracy : true,
-            timeout : 10000,
-            maximumAge : 10000
+            timeout : 1000000,
+            maximumAge : 20000
         };
 	// Get the user's current position
 	navigator.geolocation.watchPosition(showPosition, showError, optn);

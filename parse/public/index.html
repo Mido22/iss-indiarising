@@ -1,139 +1,185 @@
-<!doctype html>
-<head>
-  <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-  <title>My Parse App</title>
-  <meta name="description" content="My Parse App">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <title>SPOTFIX - The Logical Indian</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <script src="assets/js/chart-master/Chart.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <script>
-      function initialize() {
-      Parse.initialize("fTrYXzUcG7ERobkJJmGIMozQLxjBrBmgKS4HuQhM", "lNABzspsFXBu53eST4p0fhHSOLZUnFADdOxl8Ye4");
-      var mapCanvas = document.getElementById('map_canvas');
-      var mapOptions = {
-          center: new google.maps.LatLng(1.289478890541, 103.80733282853),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(mapCanvas, mapOptions)
-      var event = Parse.Object.extend("event");
-      var marker;
-      var query = new Parse.Query(event);
-      query.find({
-      success: function(results) {
-      
-    // Do something with the returned Parse.Object values
-      for (var i = 0; i < results.length; i++) { 
-        var object = results[i];
-       
-        var myLatlng = new google.maps.LatLng(object.get('location').latitude,object.get('location').longitude);
-        marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Hello World!'
-  });
+  <script type="text/javascript" src="assets/js/map.js"></script>
+    	
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-        }
-      },
-      error: function(error) {
-      alert("Error: " + error.code + " " + error.message);
-      }
-    });       
-      }
-     /* google.maps.event.addListener(map, 'center_changed', function() {
-    // 3 seconds after the center of the map has changed, pan back to the
-    // marker.
-    window.setTimeout(function() {
-      map.panTo(marker.getPosition());
-    }, 3000);
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    map.setZoom(8);
-    map.setCenter(marker.getPosition());
-  });
-}*/
-
-      google.maps.event.addDomListener(window, 'load', initialize);
-
-      
-      
-    </script>
-</head>
-
-<body>
+  <body>
    <script>
       google.maps.event.addListener(marker, 'click', function() {
        map.setZoom(8);
        map.setCenter(marker.getPosition());
       });
-      
-      /*window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '330973873748797',
-          xfbml      : true,
-          version    : 'v2.1'
-        });
-      
-      Parse.FacebookUtils.logIn(null, {
-        success: function(user) {
-      if (!user.existed()) {
-      alert("User signed up and logged in through Facebook!");
-    } else {
-      alert("User logged in through Facebook!");
-    }
-  },
-  error: function(user, error) {
-    alert("User cancelled the Facebook login or did not fully authorize.");
-  }
-});
-};*/
-      /*(function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));*/
-    </script>
+	
+   </script>
   
-  <div id="main">
 
-    <ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#">User</a></li>
-  <li><a href="#">Create Event</a></li>
-  <li><a href="#">My Events</a></li>
-    </ul>
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"> <img class="img-logo" src="assets/img/logo_new_2.png" <b>SPOTFIX</b></a>
+            <!--logo end-->
+            
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="login.html">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">ISS India Rising User 1</h5>
+              	  	
+                  <li class="mt">
+                      <a class="active" href="index.html">
+                          <i class="fa fa-home"></i>
+                          <span>Home</span>
+                      </a>
+                  </li>
 
-    <div id="map_canvas"></div>
+                  <li class="sub-menu">
+                      <a href="create.html" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Create Campaign</span>
+                      </a>
+                      
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="create.html" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Join Campaign</span>
+                      </a>
+                    
+                  </li>
+                  <li class="sub-menu">
+                      <a href="create.html" >
+                          <i class="fa fa-book"></i>
+                          <span>My Campaigns</span>
+                      </a>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="col-lg-12 main-chart">
+                  
+                  	
+                  
+                  
+                      <!--custom chart end-->
+					</div><!-- /row -->	
+                   <div id="map_canvas" class="map_canvas"></div> 
+					
+                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                  
+                  
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->
+              </div><! --/row -->
+          </section>
+      </section>
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+             2014 ISS IndiaRising
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sparkline.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
     
+    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
 
-  <script type="text/javascript">
+    <!--script for this page-->
+    <script src="assets/js/sparkline-chart.js"></script>    
+	<script src="assets/js/zabuto_calendar.js"></script>
+    
+  
+	
+	
+	
+	
+   
+  
 
-  </script>
-
-
-  <div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'gothamcity'; // Required - Replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> 
-
-</body>
-
+  </body>
 </html>
