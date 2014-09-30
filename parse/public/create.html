@@ -1,121 +1,112 @@
 <!doctype html>
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>My Parse App</title>
-  <meta name="description" content="My Parse App">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/datepicker.min.css">
-  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
-   <script type="text/javascript" src="js/create.js" >    </script>
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <title>My Parse App</title>
+    <meta name="description" content="My Parse App">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/datepicker.min.css">
+    <link rel="stylesheet" href="css/create.css">
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
+    <script type="text/javascript" src="js/create.js">    </script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
 
-<body>  
-<div id='msg' class'message'></div>
-  <div id="main">
+<body>
+    <div class="body">
+        <div id='msg' class='message'></div>
+        <div id="main">
 
-  <div class='title'>
-    <h1>
-      Spot Fix Creation
-    </h1>
-  </div>
-  <div class='drow' >
-    <span class='labSpan'>
-      
-    </span>
-    <span class='valSpan'>
-      
-    </span>
-  </div>
+            <div class='title'>
+                <h1>Spot Fix Creation
+                </h1>
+            </div>
+            <div class='drow'>
+                <span class='labSpan'></span>
+                <span class='valSpan'></span>
+            </div>
 
 
 
-  <div class='drow' >
-    <span class='labSpan'>
-      Name your Spot Fix : 
-    </span>
-    <span class='valSpan'>
-      <input type='text'  id='dName' placeholder='Give it a cool name'/>
-    </span>
-  </div>
+            <div class='drow'>
+                <span class='labSpan'>Name your Spot Fix : 
+                </span>
+                <span class='valSpan'>
+                    <input type='text' id='dName' placeholder='Give it a cool name' />
+                </span>
+            </div>
 
 
 
-  <div class='drow' >
-    <span class='labSpan'>
-      Photo : 
-    </span>
-    <span class='valSpan'>
-      <input type="file" accept="image/*" capture="camera" id='dPhoto' placeholder='Photo of the Location' />    
-          <img id="blah" src="#" alt="upload picture" />
-    </span>
-  </div>
-  <div class='drow' >
-    <span class='labSpan'>
-      Date : 
-    </span>
-    <span class='valSpan'>
-        <div class="input-group date">
-            <input type="text" class="form-control" id='dDate' readonly width='150' placeholder='Date of Spot Fix'><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-        </div>
-    </span>
-  </div>
+            <div class='drow'>
+                <span class='labSpan'>Photo : 
+                </span>
+                <span class='valSpan'>
+                    <input type="file" accept="image/*" capture="camera" id='dPhoto' placeholder='Photo of the Location' />
+                    <img id="blah" src="#" alt="upload picture" />
+                </span>
+            </div>
+            <div class='drow'>
+                <span class='labSpan'>Date : 
+                </span>
+                <span class='valSpan'>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id='dDate' readonly width='50' placeholder='Date of Spot Fix'><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </span>
+            </div>
 
 
-  <div class='drow' >
-    <span class='labSpan'>
-      Address : 
-    </span>
-    <span class='valSpan'>
-      <textarea id = 'dAddress' placeholder='A back up address if we are not able to capture your location, or google map showing wrong location'>  </textarea>
-      <button id='addressBtn'>Get My location</button>
-      <div id ='gMap' class='hidden'>
-       <!--google api screen with the location found, which can be edited as per need( like moving from the detected area to the right one etx.).-->
+            <div class='drow'>
+                <span class='labSpan'>Address : 
+                </span>
+                <span class='valSpan'>
+                    <textarea id='dAddress' placeholder='A back up address if we are not able to capture your location, or google map showing wrong location'>  </textarea>
+                    <button id='addressBtn'>Get My location</button>
+                    <div id='gMap' class='hidden'>
+                        <!--google api screen with the location found, which can be edited as per need( like moving from the detected area to the right one etx.).-->
 
-        <div id="map_canvas"></div>
-      </div>
-    </span>
-  </div>
-
-
-  <div class='drow' >
-    <span class='labSpan'>
-      Other Info : 
-    </span>
-    <span class='valSpan'>
-        <textarea id = 'dDesc' placeholder='why does this place have to be cleaned'>   </textarea>
-    </span>
-  </div>
+                        <div id="map_canvas"></div>
+                    </div>
+                </span>
+            </div>
 
 
-  <div class='drow' >
-    <span class='labSpan'>
-      Hours/manpower required : 
-    </span>
-    <span class='valSpan'>
-      <input type='text'  id='dManpower' placeholder='how many people do you think is needed?'/>
-    </span>
-  </div>
+            <div class='drow'>
+                <span class='labSpan'>Other Info : 
+                </span>
+                <span class='valSpan'>
+                    <textarea id='dDesc' placeholder='why does this place have to be cleaned'>   </textarea>
+                </span>
+            </div>
 
 
-  <div class='drow' >
-    <span class='labSpan'>
-      <button id='create'> Create Spot Fix</button>
-    </span>
-    <span class='valSpan'>
-      <button id='back'> Nope, changed my mind.</button>
-    </span>
-  </div>
+            <div class='drow'>
+                <span class='labSpan'>Hours/manpower required : 
+                </span>
+                <span class='valSpan'>
+                    <input type='text' id='dManpower' placeholder='how many people do you think is needed?' />
+                </span>
+            </div>
 
 
-<!--
+            <div class='drow'>
+                <span class='labSpan'>
+                    <button id='create'>Create Spot Fix</button>
+                </span>
+                <span class='valSpan'>
+                    <button id='back'>Nope, changed my mind.</button>
+                </span>
+            </div>
+
+
+            <!--
   <video id='video2' autoplay='true' width=280 height=210></video>
   <button id='capture'>Capture Photo</button>
   <img id='img'></img>
@@ -147,9 +138,9 @@
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a> 
 -->
 
-  </div>
+        </div>
 
-
+    </div>
 
 </body>
 

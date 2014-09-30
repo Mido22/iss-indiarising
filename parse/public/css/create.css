@@ -1,0 +1,23 @@
+﻿.title {
+    text-align:center;
+}
+.labSpan,.valSpan {
+    float:left;
+    display:block;
+    width:47%;
+    margin:10px 2px;
+}
+.labSpan {
+    text-align:right;
+}
+.valSpan:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.input-group.date {
+    width:75%;
+}
