@@ -48,6 +48,7 @@ function saveEvent(){
 	sf.set("address", $('#dAddress').val());
   sf.set("description", $('#dDesc').val());
   sf.set("createrName", 'Batman');
+  sf.set("status", 0);
 	sf.set("hours_required", $('#dManpower').val());
 	sf.set("location", new Parse.GeoPoint(dLoc));
 	sf.set("searchKeys", searchKeys);
