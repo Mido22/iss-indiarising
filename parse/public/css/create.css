@@ -2,7 +2,11 @@
     .title {
         text-align: center;
     }
-
+    #map_canvas {
+        height:300px;
+        width:500px;
+        left:-250px;
+    }
     .labSpan, .valSpan {
         float: left;
         display: block;
@@ -32,6 +36,10 @@
         padding:10px;
     }
 
+     #map_canvas {
+        height:300px;
+        width:500px;
+    }
     .buttons button {
         width:90%;
     }
