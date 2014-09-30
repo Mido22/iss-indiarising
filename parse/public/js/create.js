@@ -40,14 +40,16 @@ function saveEvent(){
 	// Simple syntax to create a new subclass of Parse.Object.
 	var SpotFix = Parse.Object.extend("event");
  	console.log('fdg = '+$('#dName').val());
+ 	var searchKeys = ($('#dName').val()+' ' +$('#dAddress').val()+ ' '+$('#dDesc').val()).toLowerCase();
 	// Create a new instance of that class.
 	var sf = new SpotFix();
 	sf.set("title", $('#dName').val());
-	sf.set("createdAt", $('#dDate').val());
+	sf.set("fixDate", $('#dDate').val());
 	sf.set("address", $('#dAddress').val());
 	sf.set("description", $('#dDesc').val());
 	sf.set("hours_required", $('#dManpower').val());
 	sf.set("location", new Parse.GeoPoint(dLoc));
+	sf.set("searchKeys", searchKeys);
 	//sf.set("", $('#').value());
 	//sf.set("", $('#').value());
 	var fileUploadControl = $("#dPhoto")[0];	/**/
