@@ -2,6 +2,9 @@
     .title {
         text-align: center;
     }
+    #main-content {
+        padding:20px;
+    }
     #map_canvas {
         height:300px;
         width:500px;
@@ -38,7 +41,7 @@
 
      #map_canvas {
         height:300px;
-        width:500px;
+        width:100%;
     }
     .buttons button {
         width:90%;
