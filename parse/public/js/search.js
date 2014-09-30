@@ -14,7 +14,6 @@ function showMessage(msg,type) {  // type can be success or error, based on that
 }
 
 function searchEvent(){
-	console.log('in search event'+$('#dSearch').val());	
 	var SpotFix = Parse.Object.extend("event");
   var query = new Parse.Query(SpotFix);
   query.select("address",'creater','description','location','status','title','hours_required','fixDate','createrName');
@@ -29,7 +28,6 @@ function searchEvent(){
 
 function searchLocationBasedEvent(position){
 
-  console.log('in search event'+position); 
   myLocation={latitude: position.coords.latitude, longitude: position.coords.longitude};
   var userGeoPoint = new Parse.GeoPoint(position.coords.latitude, position.coords.longitude);
   var SpotFix = Parse.Object.extend("event");
@@ -88,7 +86,6 @@ function showResults(results) {
         sResults=results;
         var dataSet=[],row;
         sResults.forEach(function(d){
-            console.log('SON : '+JSON.stringify(d));
             row=[];
             row.push(d.get('title'));
             row.push(d.get('fixDate'));
@@ -96,11 +93,9 @@ function showResults(results) {
             row.push(d.get('description'));
             row.push(d.get('hours_required'));
             row.push(d.get('createrName'));
-            console.log('geo : '+d.get('location').latitude );
-            showPosition(d.get('location'),0,d.id );
+            showPosition(d.get('location'),d.get('status'),d.id );
             dataSet.push(row);
         });
-        console.log('ds:'+JSON.stringify(dataSet));
         $('#searchTable').dataTable( {
           "data": dataSet,
           "columns": [
@@ -116,7 +111,23 @@ function showResults(results) {
       }
 
 function showPosition(position,code,id) {
-  console.log('ps:'+position+',c:'+code+', id:'+id);
+
+  var icon = {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 7
+              };
+
+  if(!(code==-1)){
+    var colour;
+    switch(code){
+      case 0: colour='FF0000';break;
+      case 1: colour='0000FF';break;
+      case 2: colour='00FF00';break;
+      default: colour='FFFFFF';break;
+    }
+    var path = 'http://chart.apis.google.com/chart?cht=d&chdp=mapsapi&chl=pin%27i\\%27[M%27-2%27f\\hv%27a\\]h\\]o\\'+colour+'%27fC\\000000%27tC\\000000%27eC\\Lauto%27f\\&ext=.png';
+    icon=  new google.maps.MarkerImage(path);
+  }
   if(!map){
       var mapOptions = {
             center: new google.maps.LatLng(position.latitude, position.longitude),
@@ -127,6 +138,7 @@ function showPosition(position,code,id) {
   }
         var marker = new google.maps.Marker({
               position:  new google.maps.LatLng(position.latitude,position.longitude),
+              icon : icon,
               map: map,
               title: 'Location of the Spot Fix'
             });
