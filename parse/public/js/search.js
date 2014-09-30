@@ -120,7 +120,7 @@ function showPosition(position,code,id) {
   if(!map){
       var mapOptions = {
             center: new google.maps.LatLng(position.latitude, position.longitude),
-            zoom: 9,
+            zoom: 14,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(mapCanvas, mapOptions);

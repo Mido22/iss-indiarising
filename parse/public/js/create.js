@@ -92,7 +92,7 @@ function getLocation(){
         var optn = {
             enableHighAccuracy : true,
             timeout : 1000000,
-            maximumAge : 20000
+            maximumAge : 9999990
         };
 	// Get the user's current position
 	navigator.geolocation.watchPosition(showPosition, showError, optn);
@@ -102,42 +102,12 @@ function getLocation(){
     	alert('Geolocation is not supported in your browser');
 	}
 
-/*
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    	$('#gMap').removeClass('hidden');
-      var mapCanvas = document.getElementById('map_canvas');
-    	dLoc={
-    		latitude:position.coords.latitude,
-    		longitude:position.coords.longitude
-    	};
-      	//var pos = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      	console.log('asda lat ='+dLoc.latitude+', log = '+dLoc.longitude);
-      	var mapOptions = {
-          	center: new google.maps.LatLng(dLoc.latitude, dLoc.longitude),
-          	zoom: 18,
-          	mapTypeId: google.maps.MapTypeId.ROADMAP
-      	}
-      	var map = new google.maps.Map(mapCanvas, mapOptions);
-      	var myLatlng = new google.maps.LatLng(dLoc.latitude,dLoc.longitude);
-      	var marker = new google.maps.Marker({
-        			position: myLatlng,
-        			map: map,
-        			title: 'Location of the Spot Fix'
-  	  			});
-      
-    },  showMessage('Error: The Geolocation service failed.','error'));
-  } else {
-    showMessage('Error: Your browser doesn\'t support geolocation.', 'error');
-  }
-*/
-
 }
 
 
 
 function showPosition(position) {
-		//document.write('Latitude: '+position.coords.latitude+'Longitude: '+position.coords.longitude);
+      if(dLoc)  return;
     	dLoc={
     		latitude:position.coords.latitude,
     		longitude:position.coords.longitude
@@ -151,10 +121,25 @@ function showPosition(position) {
       	var myLatlng = new google.maps.LatLng(dLoc.latitude,dLoc.longitude);
       	var marker = new google.maps.Marker({
         			position: myLatlng,
+              icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 7
+              },
+              draggable: true,
         			map: map,
-        			title: 'Location of the Spot Fix'
+        			title: 'Location of the Spot Fix, drag it to right position'
   	  			});
+
+      google.maps.event.addListener(marker, 'dragend', function(evt){
+           // console.log('<p>Marker dropped: Current Lat: ' + evt.latLng.lat() + ' Current Lng: ' + evt.latLng.lng() + '</p>');
+        dLoc={
+           latitude:evt.latLng.lat(),
+            longitude:evt.latLng.lng()
+        };
+      });
 }
+
+
 
 function showError(error) {
     switch(error.code) {
