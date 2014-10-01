@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>SPOTFIX - The Logical Indian</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- create page stylesheets-->
+      
+    <link rel="stylesheet" href="css/create.css">
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"> <img class="img-logo" src="assets/img/logo_new_2.png" <b>SPOTFIX</b></a>
+            <!--logo end-->
+            
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="login.html">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">ISS India Rising User 1</h5>
+              	  	
+                  <li class="mt">
+                      <a href="index.html">
+                          <i class="fa fa-home"></i>
+                          <span>Home</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a class="active" href="create.html" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Create Campaign</span>
+                      </a>
+                      
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="create.html" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Join Campaign</span>
+                      </a>
+                    
+                  </li>
+                  <li class="sub-menu">
+                      <a href="create.html" >
+                          <i class="fa fa-book"></i>
+                          <span>My Campaigns</span>
+                      </a>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row">
+                  <div class="body">
+        <div id='msg' class='message'></div>
+            <div class="panel">
+        <div class="panel-body">
+            <div style="opacity:0; height: 4em"></div>
+        <table class="table">
+                    <tr>
+                        <td style="text-align: left" class="col-xs-4">Title</td>
+                        <td class="col-xs-8" style="text-align: left">Spotfix title</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left">Status</td>
+                        <td style="text-align: left">Event current status</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left">DateTime</td>
+                        <td style="text-align: left">Event Date/time<a style="float: right" href="">Map</a></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left">Latest Meetup</td>
+                        <td style="text-align: left">Latest meetup details</td>
+                    </tr>
+                </table>
+    
+            </div>
+        </div>
+                
+    <div class="col-xs-6 col-sm-9">
+        <a class="fancybox" rel="group" href="images/Koala.jpg"><img src="images/Koala_lowres.png" class="img-rounded" style="width: 100%"/></a>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="row-fluid">
+                <div class="col-xs-12">
+                    <div class="panel">
+                    <!-- BEGIN Widgeta.com RATING WIDGET CODE -->
+<script language="javascript">$rating_widget_type = 'thumb'; $rating_widget_theme = 1; $rating_widget_color = 'FFFFFF'; $rating_widget_url = '';</script>
+                    <script type="text/javascript" language="javascript" src="js/rating.js"></script>
+<!-- END Widgeta.com RATING WIDGET CODE -->
+                    </div>            
+        </div>
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <button class="btn btn-primary">Pledge/Unpledge</button>
+                    </div>
+        </div>
+                <div class="col-xs-12">
+                    <span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+        </div>
+                </div>
+        
+        </div>
+        <div class="col-xs-12">
+            <a class="fancybox" href="#inline1" title="List of Resources">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+            <div class="col-xs-3">Overall</div>
+            <div class="col-xs-9">
+                    <div class="progress progress-striped">
+  <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+</div>
+                    </div>
+            </div>
+                <div class="row">
+            <div class="col-xs-3">Volunteer</div>
+            <div class="col-xs-9">
+      <div class="progress progress-striped">
+  <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+</div>
+                    </div>
+            </div>
+            </div>
+            </div>
+                </a>
+        </div>
+        <div class="col-xs-12">
+            <div class="panel">
+            <div id="Div1"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'indiarisingiss'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+         </div>
+    <div id="inline1" style="display: none;">
+		<table class="table">
+                    <tr class="warning">
+                        <td style="text-align: left" class="col-xs-8">Cement bags (10kg)</td>
+                        <td style="text-align: right" class="col-xs-2">25</td>
+                        <td style="text-align: right" class="col-xs-2">40</td>
+                    </tr>
+                    <tr class="danger">
+                        <td style="text-align: left" class="col-xs-8">Volunteers</td>
+                        <td style="text-align: right" class="col-xs-2">5</td>
+                        <td style="text-align: right" class="col-xs-2">20</td>
+                    </tr>
+                    <tr class="success">
+                        <td style="text-align: left" class="col-xs-8">Road Roller</td>
+                        <td style="text-align: right" class="col-xs-2">2</td>
+                        <td style="text-align: right" class="col-xs-2">2</td>
+                    </tr>
+                </table>
+        <div class="panel">
+        <div class="panel-body">
+            Requesting volunteers urgently due to limited availability of road roller and the pit is near primary school area where kids are affected.
+            </div>
+        </div>
+	</div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".fancybox").fancybox();
+        });
+</script>
+    </div>
+                  
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->
+              </div><! --/row -->
+          </section>
+      </section>
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+             2014 ISS IndiaRising
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sparkline.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    
+    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+
+    <!--script for this page-->
+    <script src="assets/js/sparkline-chart.js"></script>    
+	<script src="assets/js/zabuto_calendar.js"></script>
+    
+  
+	
+	
+	
+	
+   
+  
+  </body>
+</html>
