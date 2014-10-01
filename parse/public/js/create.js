@@ -3,6 +3,8 @@ navigator.getUserMedia = ( navigator.getUserMedia ||navigator.mozGetUserMedia ||
 
       Parse.initialize("fTrYXzUcG7ERobkJJmGIMozQLxjBrBmgKS4HuQhM", "lNABzspsFXBu53eST4p0fhHSOLZUnFADdOxl8Ye4");
 
+var SITE_URL = 'indiarising.parseapp.com';
+var EVENT_URI='event.html'
 $(document).ready(function(){
 
   $('.input-group.date').datepicker({
@@ -66,7 +68,8 @@ function saveEvent(){
 		sf.save(null, {
 			success: function(newObj) {
     		// Execute any logic that should take place after the object is saved.
-    		alert('New object created with objectId: ' + newObj.id);
+    		console.log('New object created with objectId: ' + newObj.id);
+        window.location.replace(EVENT_URI+'?event='+newObj.id);
   			},
   			error: function(newObj, error) {
     			// Execute any logic that should take place if the save fails.
