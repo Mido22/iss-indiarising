@@ -14,6 +14,7 @@ function showMessage(msg,type) {  // type can be success or error, based on that
 }
 
 function searchEvent(){
+            $.blockUI({ message: '<h1> Please wait...searching.</h1>' }); 
 	var SpotFix = Parse.Object.extend("event");
   var query = new Parse.Query(SpotFix);
   query.select("address",'creater','description','location','status','title','hours_required','fixDate','createrName');
@@ -27,6 +28,7 @@ function searchEvent(){
 }
 
 function searchLocationBasedEvent(position){
+            $.blockUI({ message: '<h1> Please wait...searching.</h1>' }); 
 
   myLocation={latitude: position.coords.latitude, longitude: position.coords.longitude};
   var userGeoPoint = new Parse.GeoPoint(position.coords.latitude, position.coords.longitude);
@@ -108,6 +110,7 @@ function showResults(results) {
           ]
         } ); 
         
+        $.unblockUI();
       }
 
 function showPosition(position,code,id) {

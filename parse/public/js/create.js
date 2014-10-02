@@ -61,20 +61,27 @@ function saveEvent(){
 	  var file = fileUploadControl.files[0];
 	  var name = fileUploadControl.value;
 	  var parseFile = new Parse.File(name, file);	
+            $.blockUI({ message: '<h1> Please wait...uploading photo.</h1>' }); 
 	  parseFile.save().then(function() {
   		// The file has been saved to Parse.
   		console.log('photo saved to server.');
+            $.blockUI({ message: '<h1> Please wait...updating database.</h1>' }); 
 		sf.set("before", parseFile);
 		sf.save(null, {
 			success: function(newObj) {
+        $.blockUI({ message: '<h1> Please wait...database Updated, redirecting to spot-fix page.</h1>' }); 
     		// Execute any logic that should take place after the object is saved.
     		console.log('New object created with objectId: ' + newObj.id);
         window.location.replace(EVENT_URI+'?event='+newObj.id);
   			},
   			error: function(newObj, error) {
+        $.blockUI({ message: '<h1> Some error has occurred, taking you to home page.</h1>' }); 
     			// Execute any logic that should take place if the save fails.
     			// error is a Parse.Error with an error code and message.
-    			alert('Failed to create new object, with error code: ' + error.message);
+    			//alert('Failed to create new object, with error code: ' + error.message);
+          setTimeout(function(){
+            window.location.replace('');
+          },3000);
   			}
 	});
 
