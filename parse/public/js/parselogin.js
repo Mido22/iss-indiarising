@@ -16,6 +16,7 @@ window.fbAsyncInit = function() {
 					Parse.user.save({
 					name:response.name});
 				});
+					document.getElementById("logout").style.display = 'none';
                     alert("User signed up and logged in through Facebook!");
 
                 } else {
